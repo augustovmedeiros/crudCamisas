@@ -1,0 +1,24 @@
+<?php
+    require("../dbcontroller.php");
+    require("../sessioncontroller.php");
+    if($_POST){
+        if(!$_POST['user'] || !$_POST['senha']){
+            die("Informação faltando.");
+            header('Location: ../../');
+        }
+        else{
+            if(checkLogin($_POST['user'], $_POST['senha'])){
+                setarSessao();
+            }else{
+                echo '<script type="text/javascript">'; 
+                echo 'window.location.href = "../../";';
+                echo 'alert("Login Inválido!");';
+                echo '</script>';
+            }
+        }
+    }
+    else{
+        die("Sem informações!");
+        header('Location: ../../');
+    }
+?>
